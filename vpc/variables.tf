@@ -29,6 +29,11 @@ variable "project_name" {
   type        = "string"
 }
 
+variable "project_name_abbreviated" {
+  description = "The project name - short"
+  type        = "string"
+}
+
 variable "environment_type" {
   description = "The environment type - e.g. dev"
   type        = "string"
