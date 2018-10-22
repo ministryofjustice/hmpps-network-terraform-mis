@@ -1,7 +1,7 @@
 # public
 module "public_subnet_az1" {
   source                  = "git::https://github.com/ministryofjustice/hmpps-terraform-modules.git?ref=master//modules//subnets"
-  subnet_cidr_block       = "${cidrsubnet(var.vpc_supernet, 5, 29 )}"
+  subnet_cidr_block       = "${var.public-cidr["az1"]}"
   availability_zone       = "${var.availability_zone["az1"]}"
   map_public_ip_on_launch = "false"
   subnet_name             = "${var.environment_name}-public-${var.availability_zone["az1"]}"
@@ -11,7 +11,7 @@ module "public_subnet_az1" {
 
 module "public_subnet_az2" {
   source                  = "git::https://github.com/ministryofjustice/hmpps-terraform-modules.git?ref=master//modules//subnets"
-  subnet_cidr_block       = "${cidrsubnet(var.vpc_supernet, 5, 30 )}"
+  subnet_cidr_block       = "${var.public-cidr["az2"]}"
   availability_zone       = "${var.availability_zone["az2"]}"
   map_public_ip_on_launch = "false"
   subnet_name             = "${var.environment_name}-public-${var.availability_zone["az2"]}"
@@ -21,7 +21,7 @@ module "public_subnet_az2" {
 
 module "public_subnet_az3" {
   source                  = "git::https://github.com/ministryofjustice/hmpps-terraform-modules.git?ref=master//modules//subnets"
-  subnet_cidr_block       = "${cidrsubnet(var.vpc_supernet, 5, 31 )}"
+  subnet_cidr_block       = "${var.public-cidr["az3"]}"
   availability_zone       = "${var.availability_zone["az3"]}"
   map_public_ip_on_launch = "false"
   subnet_name             = "${var.environment_name}-public-${var.availability_zone["az3"]}"
@@ -32,7 +32,7 @@ module "public_subnet_az3" {
 # private
 module "private_subnet_az1" {
   source                  = "git::https://github.com/ministryofjustice/hmpps-terraform-modules.git?ref=master//modules//subnets"
-  subnet_cidr_block       = "${cidrsubnet(var.vpc_supernet, 2, 0 )}"
+  subnet_cidr_block       = "${var.private-cidr["az1"]}"
   availability_zone       = "${var.availability_zone["az1"]}"
   map_public_ip_on_launch = "false"
   subnet_name             = "${var.environment_name}-private-${var.availability_zone["az1"]}"
@@ -42,7 +42,7 @@ module "private_subnet_az1" {
 
 module "private_subnet_az2" {
   source                  = "git::https://github.com/ministryofjustice/hmpps-terraform-modules.git?ref=master//modules//subnets"
-  subnet_cidr_block       = "${cidrsubnet(var.vpc_supernet, 2, 1 )}"
+  subnet_cidr_block       = "${var.private-cidr["az2"]}"
   availability_zone       = "${var.availability_zone["az2"]}"
   map_public_ip_on_launch = "false"
   subnet_name             = "${var.environment_name}-private-${var.availability_zone["az2"]}"
@@ -52,7 +52,7 @@ module "private_subnet_az2" {
 
 module "private_subnet_az3" {
   source                  = "git::https://github.com/ministryofjustice/hmpps-terraform-modules.git?ref=master//modules//subnets"
-  subnet_cidr_block       = "${cidrsubnet(var.vpc_supernet, 2, 2 )}"
+  subnet_cidr_block       = "${var.private-cidr["az3"]}"
   availability_zone       = "${var.availability_zone["az3"]}"
   map_public_ip_on_launch = "false"
   subnet_name             = "${var.environment_name}-private-${var.availability_zone["az3"]}"
@@ -63,7 +63,7 @@ module "private_subnet_az3" {
 # db
 module "db_subnet_az1" {
   source                  = "git::https://github.com/ministryofjustice/hmpps-terraform-modules.git?ref=master//modules//subnets"
-  subnet_cidr_block       = "${cidrsubnet(var.vpc_supernet, 4, 12 )}"
+  subnet_cidr_block       = "${var.db-cidr["az1"]}"
   availability_zone       = "${var.availability_zone["az1"]}"
   map_public_ip_on_launch = "false"
   subnet_name             = "${var.environment_name}-db-${var.availability_zone["az1"]}"
@@ -73,7 +73,7 @@ module "db_subnet_az1" {
 
 module "db_subnet_az2" {
   source                  = "git::https://github.com/ministryofjustice/hmpps-terraform-modules.git?ref=master//modules//subnets"
-  subnet_cidr_block       = "${cidrsubnet(var.vpc_supernet, 4, 13 )}"
+  subnet_cidr_block       = "${var.db-cidr["az2"]}"
   availability_zone       = "${var.availability_zone["az2"]}"
   map_public_ip_on_launch = "false"
   subnet_name             = "${var.environment_name}-db-${var.availability_zone["az2"]}"
@@ -83,7 +83,7 @@ module "db_subnet_az2" {
 
 module "db_subnet_az3" {
   source                  = "git::https://github.com/ministryofjustice/hmpps-terraform-modules.git?ref=master//modules//subnets"
-  subnet_cidr_block       = "${cidrsubnet(var.vpc_supernet, 5, 28 )}"
+  subnet_cidr_block       = "${var.db-cidr["az3"]}"
   availability_zone       = "${var.availability_zone["az3"]}"
   map_public_ip_on_launch = "false"
   subnet_name             = "${var.environment_name}-db-${var.availability_zone["az3"]}"
