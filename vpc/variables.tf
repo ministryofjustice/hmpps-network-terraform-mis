@@ -29,6 +29,11 @@ variable "project_name" {
   type        = "string"
 }
 
+variable "project_name_abbreviated" {
+  description = "The project name - short"
+  type        = "string"
+}
+
 variable "environment_type" {
   description = "The environment type - e.g. dev"
   type        = "string"
@@ -62,7 +67,20 @@ variable "aws_nameserver" {
 
 variable "availability_zone" {
   description = "List of the three AZs we want to use"
-  type = "map"
+  type        = "map"
 }
 
 variable "environment_identifier" {}
+
+# subnets
+variable "public-cidr" {
+  type = "map"
+}
+
+variable "private-cidr" {
+  type = "map"
+}
+
+variable "db-cidr" {
+  type = "map"
+}

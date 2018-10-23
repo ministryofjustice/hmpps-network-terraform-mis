@@ -13,7 +13,7 @@ Script takes the following arguments
 Example
 
 ```
-sh run.sh plan hmpps-token
+python docker-run.py --env dev --action test --token hmpps-token
 ```
 
 TERRAGRUNT
