@@ -16,8 +16,8 @@ resource "aws_security_group" "mis_db_in" {
 resource "aws_security_group" "mis_common" {
   name        = "${var.environment_name}-delius-core-${var.mis_app_name}-internal-lb-in"
   vpc_id      = "${data.terraform_remote_state.vpc.vpc_id}"
-  description = "internal LB incoming"
-  tags        = "${merge(data.terraform_remote_state.vpc.tags, map("Name", "${var.environment_name}_${var.mis_app_name}_internal-lb_in_in", "Type", "WEB"))}"
+  description = "common sg"
+  tags        = "${merge(data.terraform_remote_state.vpc.tags, map("Name", "${var.environment_name}_${var.mis_app_name}_common", "Type", "WEB"))}"
 
   lifecycle {
     create_before_destroy = true
