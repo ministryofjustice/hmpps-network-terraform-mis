@@ -12,10 +12,10 @@ provider "aws" {
   region  = "${var.region}"
   version = "~> 1.16"
 
-  # # Comment out when using terraform only
-  #   assume_role {
-  #     role_arn = "${var.role_arn}"
-  #   }
+  # Comment out when using terraform only
+  # assume_role {
+  #   role_arn = "${var.role_arn}"
+  # }
 }
 
 resource "aws_kms_key" "remote_state" {
