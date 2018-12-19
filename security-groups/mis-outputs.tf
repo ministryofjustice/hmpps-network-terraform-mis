@@ -13,3 +13,16 @@ output "sg_mis_common" {
 output "sg_mis_app_in" {
   value = "${aws_security_group.mis_app_in.id}"
 }
+
+output "sg_mis_app_lb" {
+  value = "${aws_security_group.mis_app_lb.id}"
+}
+
+# ldap
+output "sg_ldap_lb" {
+  value = "${aws_security_group.ldap_lb.id}"
+}
+
+output "sg_ldap_inst" {
+  value = "${aws_security_group.ldap_inst.id}"
+}
