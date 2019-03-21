@@ -23,6 +23,10 @@ output "sg_ldap_lb" {
   value = "${aws_security_group.ldap_lb.id}"
 }
 
+output "sg_ldap_proxy" {
+  value = "${aws_security_group.ldap_proxy.id}"
+}
+
 output "sg_ldap_inst" {
   value = "${aws_security_group.ldap_inst.id}"
 }

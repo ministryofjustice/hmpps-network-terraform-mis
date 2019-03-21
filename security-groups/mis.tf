@@ -51,8 +51,20 @@ resource "aws_security_group" "mis_app_in" {
 resource "aws_security_group" "ldap_lb" {
   name        = "${var.environment_name}-delius-core-${var.mis_app_name}-ldap-lb"
   vpc_id      = "${data.terraform_remote_state.vpc.vpc_id}"
-  description = "api incoming"
+  description = "api lb incoming"
   tags        = "${merge(data.terraform_remote_state.vpc.tags, map("Name", "${var.environment_name}_${var.mis_app_name}_ldap_lb", "Type", "API"))}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+# LDAP Proxy
+resource "aws_security_group" "ldap_proxy" {
+  name        = "${var.environment_name}-delius-core-${var.mis_app_name}-ldap-proxy"
+  vpc_id      = "${data.terraform_remote_state.vpc.vpc_id}"
+  description = "api proxy incoming"
+  tags        = "${merge(data.terraform_remote_state.vpc.tags, map("Name", "${var.environment_name}_${var.mis_app_name}_ldap_proxy", "Type", "API"))}"
 
   lifecycle {
     create_before_destroy = true
@@ -62,7 +74,7 @@ resource "aws_security_group" "ldap_lb" {
 resource "aws_security_group" "ldap_inst" {
   name        = "${var.environment_name}-delius-core-${var.mis_app_name}-ldap-inst"
   vpc_id      = "${data.terraform_remote_state.vpc.vpc_id}"
-  description = "api incoming"
+  description = "api instance"
   tags        = "${merge(data.terraform_remote_state.vpc.tags, map("Name", "${var.environment_name}_${var.mis_app_name}_ldap_inst", "Type", "API"))}"
 
   lifecycle {
