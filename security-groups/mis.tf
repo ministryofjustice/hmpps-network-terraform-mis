@@ -14,7 +14,7 @@ resource "aws_security_group" "mis_db_in" {
 
 #Common
 resource "aws_security_group" "mis_common" {
-  name        = "${var.environment_name}-delius-core-${var.mis_app_name}-common-in"
+  name        = "${var.environment_name}-delius-core-${var.mis_app_name}-common"
   vpc_id      = "${data.terraform_remote_state.vpc.vpc_id}"
   description = "common sg"
   tags        = "${merge(data.terraform_remote_state.vpc.tags, map("Name", "${var.environment_name}_${var.mis_app_name}_common_in", "Type", "WEB"))}"
@@ -37,7 +37,7 @@ resource "aws_security_group" "mis_app_lb" {
 }
 
 resource "aws_security_group" "mis_app_in" {
-  name        = "${var.environment_name}-delius-core-${var.mis_app_name}-api-instance-in"
+  name        = "${var.environment_name}-delius-core-${var.mis_app_name}-api-in"
   vpc_id      = "${data.terraform_remote_state.vpc.vpc_id}"
   description = "api incoming"
   tags        = "${merge(data.terraform_remote_state.vpc.tags, map("Name", "${var.environment_name}_${var.mis_app_name}_api_instance_in", "Type", "API"))}"
@@ -76,6 +76,18 @@ resource "aws_security_group" "ldap_inst" {
   vpc_id      = "${data.terraform_remote_state.vpc.vpc_id}"
   description = "api instance"
   tags        = "${merge(data.terraform_remote_state.vpc.tags, map("Name", "${var.environment_name}_${var.mis_app_name}_ldap_inst", "Type", "API"))}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+# jumphost
+resource "aws_security_group" "mis_jumphost" {
+  name        = "${var.environment_name}-delius-core-${var.mis_app_name}-jumphost"
+  vpc_id      = "${data.terraform_remote_state.vpc.vpc_id}"
+  description = "jumphost sg for rdp"
+  tags        = "${merge(data.terraform_remote_state.vpc.tags, map("Name", "${var.environment_name}_${var.mis_app_name}_jumphost", "Type", "RDP"))}"
 
   lifecycle {
     create_before_destroy = true
